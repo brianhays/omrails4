@@ -71,6 +71,6 @@ class PinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pin_params
-      params.require(:pin).permit(:description, :image).merge(user_id: current_user.id)
+      params.require(:pin).permit(:description, :image, :image_remote_url).merge(user_id: current_user.id)
     end
 end
