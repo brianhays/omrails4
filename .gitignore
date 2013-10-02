@@ -21,3 +21,12 @@
 
 # Ignore Paperclip uploaded files
 /public/system
+
+# Ignore other unneeded files.
+database.yml
+doc/
+*.swp
+*~
+.project
+.idea
+.secret

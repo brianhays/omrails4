@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Omrails4::Application.config.secret_key_base = 'a60324721d9962caffd7291050b86f47a899f73460958514f3f9da560bf89c038dc2147c9fc4ddc5d1ab87b87e21153e019189a6bc8cf4a49e37bf109f28ea00'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Omrails4::Application.config.secret_key_base = secure_token
